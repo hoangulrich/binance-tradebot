@@ -5,7 +5,7 @@ from binance.lib.utils import config_logging
 from user import um_futures_client, key
 from module import *
 
-config_logging(logging, logging.DEBUG)
+# config_logging(logging, logging.DEBUG)
 
 # END POINT URL
 BINANCE_FUTURES_END_POINT = "https://fapi.binance.com/fapi/v1/listenKey"
