@@ -1,9 +1,6 @@
-import logging
-import websocket
-import json, requests
+import requests
 from binance.lib.utils import config_logging
-from user import um_futures_client, key
-from module import *
+from binanceAPI.user import *
 
 # config_logging(logging, logging.DEBUG)
 

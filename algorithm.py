@@ -1,17 +1,20 @@
 import os
 import websocket
 import json
-from binance.lib.utils import config_logging
-from user import um_futures_client, key
-from module import *
-from datastream import futures_connection_url
 import globalVar
 
+from binance.lib.utils import config_logging
+from binanceAPI.user import um_futures_client, key
+from module.cancelOrder import *
+from module.getBalance import *
+from module.positionIsEmpty import *
+from module.newMarketOrder import *
+from module.takeProfit import *
+from module.newOrder import *
+from utils.printColor import *
+from binanceAPI.datastream import futures_connection_url
+
 #config_logging(logging, logging.DEBUG)
-
-def prYellow(skk): print("\033[93m {}\033[00m" .format(skk))
-
-def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
 
 def ask_input():
     globalVar.leverage = 100
@@ -26,15 +29,14 @@ def ask_input():
 # ALGORITHM ON DATASTREAM
 def on_open(ws):
     print(f"Open: futures order stream connected")
-    newOrderMarket(globalVar.symbol, "LONG","BUY","MARKET", globalVar.quantity0)
-
+    newMarketOrder(globalVar.symbol, "LONG","BUY","MARKET", globalVar.quantity0)
 
 def on_message(ws, message):
     #prYellow(f"\nMessage: {message}\n")
     event_dict = json.loads(message)
     if event_dict["e"] == "ORDER_TRADE_UPDATE":
         if(event_dict["o"]["X"] == "FILLED"):
-            if positionEmpty() == True:
+            if positionIsEmpty() == True:
                 pnl = getBalance() - globalVar.initialBalance
                 prYellow(pnl)
                 print("RESTART")

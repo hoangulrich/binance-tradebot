@@ -1,5 +1,5 @@
 from algorithm import *
-from module import *
+from module.getBalance import *
 import globalVar
 
 def main():
