@@ -3,26 +3,19 @@
 How to guide:
 
 1. Add your account's API Key and Secret in a dotenv file (get yours from Binance): <br />
-   `javascript`
+
+   ```javascript
    API_KEY = "" <br />
    API_SECRET = "" <br />
-
-   ```
-
    ```
 
 2. Install all the package in requirements.txt: <br />
-   `console`
+
+   ```console
    pip install -r utils/requirements.txt <br />
-
-   ```
-
    ```
 
 3. Run main.py: <br />
-   `console`
+   ```console
    python main.py
-
-   ```
-
    ```
