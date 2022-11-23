@@ -1,12 +1,9 @@
-from algorithm import *
-from module.getBalance import *
-import globalVar
+from variables.input import *
+from wsocket import *
 
 def main():
-    globalVar.initialBalance = getBalance()
     ask_input()
     run_stream()
     
-
 if __name__ == "__main__":
     main()
