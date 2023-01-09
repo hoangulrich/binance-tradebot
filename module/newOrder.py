@@ -5,7 +5,7 @@ from binance.error import ClientError
 from binanceAPI.user import um_futures_client
 from utils.teleBot import send_error
 
-config_logging(logging, logging.DEBUG)
+#config_logging(logging, logging.DEBUG)
 
 # NEW ORDER (STOP MARKET)
 def newOrder(symbol,positionSide,side,type,quantity,stopPrice): 

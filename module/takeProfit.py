@@ -4,9 +4,6 @@ from binance.error import ClientError
 import logging
 from utils.teleBot import send_error
 
-
-config_logging(logging, logging.DEBUG)
-
 # TAKE PROFIT
 def takeProfit(symbol,positionSide,side,type,stopPrice): 
     try:

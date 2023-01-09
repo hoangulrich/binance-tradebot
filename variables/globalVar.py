@@ -12,25 +12,25 @@ global cumulativeMargin
 cumulativeMargin = 0
 
 global leverage
-leverage = 100
+leverage = 0
 
 global Xmax
-Xmax = 8
+Xmax = 0
 
 global margin
-margin = 0.25
+margin = 0
 
 global gap
-gap = 0.1/100
+gap = 0
 
 global profit
-profit = 100/100
+profit = 0
 
 global initialBalance
 initialBalance = 0
 
 global decimalPrecision
-decimalPrecision = 4
+decimalPrecision = 0
 
 global start 
 start = None

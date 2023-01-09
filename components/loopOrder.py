@@ -2,15 +2,13 @@ import variables.globalVar as globalVar
 from module.newOrder import newOrder
 from module.takeProfit import takeProfit
 from utils.printColor import *
-from utils.teleBot import *
+from module.cancelOrder import cancelOrder
+
 
 # CREATE ORDER WHEN LONG FILLED
 def loopLong(quantity):
     TP_LONG = round(globalVar.initialCeiling*(1+globalVar.profit/globalVar.leverage),globalVar.decimalPrecision)
     SL_SHORT = TP_LONG
-    
-    #debug
-    send_error(f"tp long: {TP_LONG}")
     
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)
@@ -21,9 +19,6 @@ def loopLong(quantity):
 def loopShort(quantity):
     SL_LONG = round(globalVar.initialFloor*(1-globalVar.profit/globalVar.leverage),globalVar.decimalPrecision)
     TP_SHORT = SL_LONG
-    
-    #debug
-    send_error(f"tp short: {TP_SHORT}")
     
     takeProfit(globalVar.symbol, "LONG", "SELL", "STOP_MARKET", SL_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)

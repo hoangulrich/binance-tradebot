@@ -1,0 +1,15 @@
+    globalVar.symbol = "ETHUSDT"
+    globalVar.leverage = 100
+    globalVar.Xmax = 6
+    globalVar.gap = 0.05/100
+    globalVar.profit = 50/100
+    globalVar.quantity = 0.01
+    globalVar.decimalPrecision = 2
+
+    globalVar.symbol = "ETHBUSD"
+    globalVar.leverage = 100
+    globalVar.Xmax = 6
+    globalVar.gap = 0.1/100
+    globalVar.profit = 50/100
+    globalVar.quantity = 0.01
+    globalVar.decimalPrecision = 2
