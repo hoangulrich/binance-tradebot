@@ -1,7 +1,9 @@
 from variables.input import *
-from wsocket import *
+from hosting.wsocket import *
+from hosting.webserver import keep_alive
 
 def main():
+    #keep_alive
     ask_input()
     run_stream()
     

@@ -2,7 +2,7 @@ import websocket, json
 from utils.printColor import *
 from algorithm import *
 from binanceAPI.datastream import futures_connection_url
-
+from utils.teleBot import *
 
 def on_open(ws):
     prGreen(f"Open: futures order stream connected")
@@ -20,6 +20,10 @@ def on_message(ws, message):
             filledPositionSide = event_dict["o"]["ps"]
             filledStatus = event_dict["o"]["X"]
             
+            #test2.3
+            # send_error(f"price: {filledPrice}, quantity: {filledQuantity}, side: {filledPositionSide}, status: {filledStatus}")
+            
+            #run algo
             algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus)
         else:
             print("ORDER UPDATE: " + event_dict["o"]["ps"] + " " + event_dict["o"]["X"])

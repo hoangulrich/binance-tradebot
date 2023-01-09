@@ -1,6 +1,6 @@
 import requests
 from binance.lib.utils import config_logging
-from binanceAPI.user import *
+from binanceAPI.user import key
 
 # config_logging(logging, logging.DEBUG)
 

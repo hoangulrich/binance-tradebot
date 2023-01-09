@@ -1,21 +1,15 @@
-import os
-import websocket
-import json
 import variables.globalVar as globalVar
 from components.loopOrder import *
 from components.endOrder import *
 from components.printOrder import printOrder
 from components.restart import restart_stream
 from datetime import datetime
-from binance.lib.utils import config_logging
-from binanceAPI.user import um_futures_client, key
 from module.cancelOrder import cancelOrder
 from module.getBalance import getBalance
 from module.positionIsEmpty import positionIsEmpty
 from module.newMarketOrder import newMarketOrder
-from module.takeProfit import takeProfit
-from module.newOrder import newOrder
 from utils.printColor import *
+from utils.teleBot import *
 
 # CREATE NEW MARKET ORDER INITIALLY
 def startLoop():
@@ -31,7 +25,7 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
         restart_stream()
     
     # ASSIGN INITIAL CEILING/FLOOR
-    if globalVar.x == 1:
+    if globalVar.x == 0:
         globalVar.initialCeiling = round(float(filledPrice),globalVar.decimalPrecision)
         globalVar.initialFloor = round(globalVar.initialCeiling-globalVar.gap*globalVar.initialCeiling,globalVar.decimalPrecision)
     
@@ -39,6 +33,12 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
     globalVar.margin = round(float(filledQuantity)/globalVar.leverage*float(globalVar.initialCeiling),globalVar.decimalPrecision)
     globalVar.cumulativeMargin += globalVar.margin
     printOrder(filledPositionSide,filledStatus)
+    
+    #debug
+    send_error("x: " + str(globalVar.x) + " " + "price: " + str(filledPrice) + " "" " +
+             " margin: " + str(globalVar.margin) + " USDT, side: " +
+             str(filledPositionSide) + " status: " + str(filledStatus))
+    
     
     # ???
     cancelOrder(globalVar.symbol)

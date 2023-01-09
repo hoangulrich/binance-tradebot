@@ -6,7 +6,7 @@ quantity = None
 
 # VARIABLES
 global x
-x = 1
+x = 0
 
 global cumulativeMargin
 cumulativeMargin = 0
