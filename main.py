@@ -1,6 +1,6 @@
 from variables.input import *
 from hosting.wsocket import *
-from hosting.webserver import keep_alive
+# from hosting.webserver import keep_alive
 import variables.globalVar
 
 def main():
