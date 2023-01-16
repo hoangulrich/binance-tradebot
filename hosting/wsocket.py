@@ -21,10 +21,7 @@ def on_message(ws, message):
             filledPositionSide = event_dict["o"]["ps"]
             filledStatus = event_dict["o"]["X"]
             
-            #test2.3
-            # send_error(f"price: {filledPrice}, quantity: {filledQuantity}, side: {filledPositionSide}, status: {filledStatus}")
-            
-            #run algo
+            # START ALGORITHM
             algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus)
         else:
             print("ORDER UPDATE: " + event_dict["o"]["ps"] + " " + event_dict["o"]["X"])
@@ -32,7 +29,7 @@ def on_message(ws, message):
 def on_error(ws, error):
     print(f"Error: {error}")
     # ORDER WOULD IMMEDIATELY TRIGGER ERROR
-    if re.search("-2021") == True:
+    if re.search("-2021",error):
         if globalVar.x % 2 == 0:
             newMarketOrder(globalVar.symbol, "SHORT" , "SELL" ,"MARKET", globalVar.quantity)
         else:
@@ -43,9 +40,8 @@ def on_close(ws, close_status_code, close_msg):
 
 def run_stream():
     ws = websocket.WebSocketApp(url=futures_connection_url, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
-    # ws.run_forever(ping_interval=300)
     
-    wsthread = threading.Thread(target=ws.run_forever, daemon=True)
+    wsthread = threading.Thread(target = ws.run_forever, daemon = True)
     wsthread.start()
     
     while True:
