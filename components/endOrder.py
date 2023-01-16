@@ -13,8 +13,8 @@ def endLong():
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)
     prGreen("DONE...Set up TP and SL Price")
-    SL_LONG = round(globalVar.initialCeiling-(globalVar.initialCeiling-globalVar.initialFloor)*90/100,globalVar.decimalPrecision)
-    offsetFee = round(globalVar.initialFloor,2)*0.1/100
+    SL_LONG = round(globalVar.initialCeiling-(globalVar.initialCeiling-globalVar.initialFloor)*30/100,globalVar.decimalPrecision)
+    offsetFee = round(globalVar.initialFloor,2)*0.2/100
     TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision))
     
     takeProfit(globalVar.symbol, "LONG", "SELL", "STOP_MARKET", SL_LONG)
@@ -30,10 +30,10 @@ def endShort():
     takeProfit(globalVar.symbol, "LONG", "SELL", "STOP_MARKET", SL_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
     prGreen("DONE...Set up TP and SL Price")
-    offsetFee = round(globalVar.initialCeiling,2)*0.1/100
+    offsetFee = round(globalVar.initialCeiling,2)*0.2/100
     TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
     
-    SL_SHORT = round(globalVar.initialFloor+(globalVar.initialCeiling-globalVar.initialFloor)*90/100,globalVar.decimalPrecision)
+    SL_SHORT = round(globalVar.initialFloor+(globalVar.initialCeiling-globalVar.initialFloor)*30/100,globalVar.decimalPrecision)
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)
     # send_error("TP_LONG: " + str(TP_LONG) + "\noffsetFee:" + str(offsetFee))
