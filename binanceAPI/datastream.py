@@ -13,6 +13,7 @@ FUTURES_STREAM_END_POINT_2 = "wss://fstream-auth.binance.com"
 def create_futures_listen_key(api_key):
     response = requests.post(url=BINANCE_FUTURES_END_POINT, headers={'X-MBX-APIKEY': api_key})
     time.sleep(2)
+    print(response.json()['listenKey'])
     return response.json()['listenKey']
     
     # async with aiohttp.ClientSession as session:
