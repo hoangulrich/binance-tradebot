@@ -9,7 +9,7 @@ from components.startLoop import initialOrder
 
 from binanceAPI.datastream import futures_connection_url
 from binanceAPI.user import um_futures_client
-from utils.teleBot import *
+from binanceAPI.teleBot import *
 
 def on_open(ws):
     prGreen(f"Open: futures order stream connected")
