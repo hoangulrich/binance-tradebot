@@ -3,6 +3,7 @@ from binance.lib.utils import config_logging
 from binance.error import ClientError
 import logging
 from utils.teleBot import send_error
+from variables import globalVar
 
 # NEW MARKET ORDER
 def newMarketOrder(symbol,positionSide,side,type,quantity): 
@@ -12,7 +13,7 @@ def newMarketOrder(symbol,positionSide,side,type,quantity):
             positionSide = positionSide,
             side = side,
             type = type,
-            quantity = quantity,
+            quantity = round(quantity,globalVar.quantityPrecision)
         )
         #logging.info(response)
     except ClientError as error:

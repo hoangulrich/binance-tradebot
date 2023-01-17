@@ -32,6 +32,9 @@ initialBalance = 0
 global decimalPrecision
 decimalPrecision = 0
 
+global quantityPrecision
+quantityPrecision = 0
+
 global start 
 start = None
 

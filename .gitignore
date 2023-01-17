@@ -1,2 +1,5 @@
 .env
 __pycache__/
+out.json
+out.txt
+.vscode/launch.json

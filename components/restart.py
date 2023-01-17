@@ -9,13 +9,16 @@ from utils.teleBot import *
 
 def restart_stream():
   cancelOrder(globalVar.symbol)
-  prGreen("DONE...Clear all orders\n")
+  # prGreen("DONE...Clear all orders\n")
 
   pnl = round(getBalance() - globalVar.initialBalance, 4)
   duration = getDuration()
   record(pnl, duration)
-  send_error("PNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%")
-  send_error("-----RESTART-----")
+  send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%")
+  send_error("----------RESTART----------")
+  send_error(".")
+  send_error(".")
+  send_error(".")
   print("PNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) + "%" + "\n-----RESTART-----\n")
   os.system('python "main.py"')
 

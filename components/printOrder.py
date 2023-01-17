@@ -7,5 +7,5 @@ def printOrder(filledPositionSide, filledStatus):
     print("Order margin is " + str(globalVar.margin) + " USDT")
     print("Total NAV is " + str(round(globalVar.cumulativeMargin,2)) + " USDT")
     # print("Starting loop at",str(globalVar.start))
-    # print("Current Ceiling Price is: " + str(globalVar.initialCeiling) + "\nCurrent Floor Price is: " + str(globalVar.initialFloor))
+    print("Current Ceiling Price is: " + str(globalVar.initialCeiling) + "\nCurrent Floor Price is: " + str(globalVar.initialFloor))
     prYellow("***Only have " + str(globalVar.Xmax-globalVar.x) + "/" + str(globalVar.Xmax) + " orders left.***")

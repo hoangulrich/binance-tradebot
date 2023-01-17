@@ -3,6 +3,7 @@ from binance.lib.utils import config_logging
 from binance.error import ClientError
 import logging
 from utils.teleBot import send_error
+from variables import globalVar
 
 # TAKE PROFIT
 def takeProfit(symbol,positionSide,side,type,stopPrice): 
@@ -12,7 +13,7 @@ def takeProfit(symbol,positionSide,side,type,stopPrice):
             positionSide = positionSide,
             side = side,
             type = type,
-            stopPrice = stopPrice,
+            stopPrice = float(round(stopPrice,globalVar.decimalPrecision)),
             timeInForce = "GTC",
             closePosition = "true",
         )
