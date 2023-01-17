@@ -1,7 +1,5 @@
-from variables.input import *
+from input import *
 from hosting.wsocket import *
-from hosting.webserver import keep_alive
-import variables.globalVar
 
 def main():
     #keep_alive()

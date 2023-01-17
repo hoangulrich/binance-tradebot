@@ -3,22 +3,10 @@ from components.loopOrder import *
 from components.endOrder import *
 from components.printOrder import printOrder
 from components.restart import restart_stream
-from datetime import datetime
 from module.cancelOrder import cancelOrder
-from module.getBalance import getBalance
 from module.positionIsEmpty import positionIsEmpty
-from module.newMarketOrder import newMarketOrder
 from utils.printColor import *
-from utils.teleBot import *
-
-
-# CREATE NEW MARKET ORDER INITIALLY
-def startLoop():
-  globalVar.initialBalance = getBalance()
-  globalVar.start = datetime.now()
-  # newMarketOrder(globalVar.symbol, "LONG", "BUY", "MARKET", globalVar.quantity)
-  newMarketOrder(globalVar.symbol, "SHORT", "SELL", "MARKET",
-                 globalVar.quantity)
+from binanceAPI.teleBot import *
 
 
 # MAIN ALGORITHM

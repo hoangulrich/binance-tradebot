@@ -13,9 +13,12 @@ FUTURES_STREAM_END_POINT_2 = "wss://fstream-auth.binance.com"
 def create_futures_listen_key(api_key):
     response = requests.post(url=BINANCE_FUTURES_END_POINT, headers={'X-MBX-APIKEY': api_key})
     return response.json()['listenKey']
-
+    
 listen_key = create_futures_listen_key(key)
-
 futures_connection_url = f"{FUTURES_STREAM_END_POINT_1}/ws/{listen_key}"
 
+# KEEP STREAM ALIVE
+def keepAlive():
+    response = requests.put(url=BINANCE_FUTURES_END_POINT, headers={'X-MBX-APIKEY': key})
+    return response
 

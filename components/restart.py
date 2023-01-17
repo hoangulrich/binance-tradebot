@@ -4,13 +4,16 @@ from module.cancelOrder import cancelOrder
 from module.getBalance import getBalance
 from utils.printColor import *
 from datetime import datetime
-from utils.teleBot import *
-
+from binanceAPI.teleBot import *
+from components.startLoop import initialOrder
+from input import *
+# from hosting.wsocket import ws
 
 def restart_stream():
   cancelOrder(globalVar.symbol)
   # prGreen("DONE...Clear all orders\n")
 
+  # CALCULATE PNL + DURATION
   pnl = round(getBalance() - globalVar.initialBalance, 4)
   duration = getDuration()
   record(pnl, duration)
@@ -20,8 +23,26 @@ def restart_stream():
   send_error(".")
   send_error(".")
   print("PNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) + "%" + "\n-----RESTART-----\n")
-  os.system('python "main.py"')
 
+  # LOCAL RESTART 
+  # os.system('python "main.py"')
+
+  # SERVER RESTART
+  # 1
+  # @reboot /bin/python3 /home/ubuntu/binance-tradebot/main.py
+  # 2 (chmod 755 launcher.sh)
+  # @reboot sh /home/ubuntu/launcher
+  # ws.close()
+  # 3
+  # os.execv(sys.executable,['python3'] + sys.argv)
+  # 4 (chmod 755 main.py)
+  # os.execv(sys.argv[0], sys.argv)
+
+  # 5 (run_forever)
+  globalVar.x = -1
+  ask_input()
+  initialOrder()
+  
 
 def getDuration():
   globalVar.end = datetime.now()

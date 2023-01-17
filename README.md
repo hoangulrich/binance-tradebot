@@ -12,7 +12,7 @@ How to guide:
 2. Install all the package in requirements.txt: <br />
 
    ```console
-   pip install -r utils/requirements.txt
+   pip install -r requirements.txt
    ```
 
 3. Run main.py: <br />
