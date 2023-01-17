@@ -5,6 +5,8 @@ from module.getBalance import getBalance
 from utils.printColor import *
 from datetime import datetime
 from binanceAPI.teleBot import *
+from components.startLoop import initialOrder
+from input import *
 # from hosting.wsocket import ws
 
 def restart_stream():
@@ -20,7 +22,7 @@ def restart_stream():
   print("PNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) + "%" + "\n-----RESTART-----\n")
 
   # LOCAL RESTART 
-  os.system('python "main.py"')
+  # os.system('python "main.py"')
 
   # SERVER RESTART
   # 1
@@ -33,6 +35,11 @@ def restart_stream():
   # 4 (chmod 755 main.py)
   # os.execv(sys.argv[0], sys.argv)
 
+  # 5 (run_forever)
+  globalVar.x = -1
+  ask_input()
+  initialOrder()
+  
 
 def getDuration():
   globalVar.end = datetime.now()

@@ -4,10 +4,11 @@ from algorithm import *
 from binanceAPI.datastream import *
 from binanceAPI.teleBot import *
 from module.newMarketOrder import *
+from components.startLoop import initialOrder
 
 def on_open(ws):
     prGreen(f"Open: futures order stream connected")
-    startLoop()
+    initialOrder()
     
 def on_message(ws, message):
     #prYellow(f"\nMessage: {message}\n")
@@ -23,6 +24,8 @@ def on_message(ws, message):
             
             # START ALGORITHM
             algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus)
+        # elif(event_dict["o"]["X"] == "EXPIRED" or event_dict["o"]["X"] == "PARTIALLY_FILLED"):
+        #     print(event_dict)
         else:
             print("ORDER UPDATE: " + event_dict["o"]["ps"] + " " + event_dict["o"]["X"])
             

@@ -1,4 +1,3 @@
-#!/bin/python3
 from input import *
 from hosting.wsocket import *
 
