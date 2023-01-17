@@ -5,9 +5,18 @@ from binanceAPI.datastream import *
 from binanceAPI.teleBot import *
 from module.newMarketOrder import *
 from components.startLoop import initialOrder
+from variables import globalVar
 
 def on_open(ws):
     prGreen(f"Open: futures order stream connected")
+    exchange_info =  um_futures_client.exchange_info()
+    # json_str = json.loads(exchange_info)
+    for symbol in exchange_info["symbols"]:
+        if symbol["symbol"] == globalVar.symbol:
+            globalVar.decimalPrecision = symbol["pricePrecision"]
+            globalVar.quantityPrecision = symbol["quantityPrecision"]
+            print(f"Set price precision of symbol {globalVar.symbol} to {globalVar.decimalPrecision}")
+            print(f"Set quantity precision of symbol {globalVar.symbol} to {globalVar.quantityPrecision}")
     initialOrder()
     
 def on_message(ws, message):

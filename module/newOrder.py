@@ -3,6 +3,7 @@ import json
 from binance.lib.utils import config_logging
 from binance.error import ClientError
 from binanceAPI.user import um_futures_client
+from variables import globalVar
 from binanceAPI.teleBot import send_error
 
 #config_logging(logging, logging.DEBUG)
@@ -15,7 +16,7 @@ def newOrder(symbol,positionSide,side,type,quantity,stopPrice):
             positionSide = positionSide,
             side = side,
             type = type,
-            quantity = quantity,
+            quantity = float(round(quantity,globalVar.quantityPrecision)),
             timeInForce = "GTC",
             stopPrice = stopPrice,
         )
