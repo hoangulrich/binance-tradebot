@@ -1,19 +1,14 @@
 import websocket, json, threading, time, re
 from utils.printColor import *
 from algorithm import *
-
 from binanceAPI.datastream import *
 from binanceAPI.teleBot import *
 from module.newMarketOrder import *
 from components.startLoop import initialOrder
-
-from binanceAPI.datastream import futures_connection_url
-from binanceAPI.user import um_futures_client
-from binanceAPI.teleBot import *
+from variables import globalVar
 
 def on_open(ws):
     prGreen(f"Open: futures order stream connected")
-    initialOrder()
     exchange_info =  um_futures_client.exchange_info()
     # json_str = json.loads(exchange_info)
     for symbol in exchange_info["symbols"]:
@@ -22,9 +17,7 @@ def on_open(ws):
             globalVar.quantityPrecision = symbol["quantityPrecision"]
             print(f"Set price precision of symbol {globalVar.symbol} to {globalVar.decimalPrecision}")
             print(f"Set quantity precision of symbol {globalVar.symbol} to {globalVar.quantityPrecision}")
-
-    
-    startLoop() 
+    initialOrder()
     
 def on_message(ws, message):
     #prYellow(f"\nMessage: {message}\n")
