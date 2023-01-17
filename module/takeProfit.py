@@ -2,7 +2,7 @@ from binanceAPI.user import um_futures_client
 from binance.lib.utils import config_logging
 from binance.error import ClientError
 import logging
-from utils.teleBot import send_error
+from binanceAPI.teleBot import send_error
 
 # TAKE PROFIT
 def takeProfit(symbol,positionSide,side,type,stopPrice): 

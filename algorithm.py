@@ -9,7 +9,7 @@ from module.getBalance import getBalance
 from module.positionIsEmpty import positionIsEmpty
 from module.newMarketOrder import newMarketOrder
 from utils.printColor import *
-from utils.teleBot import *
+from binanceAPI.teleBot import *
 
 
 # CREATE NEW MARKET ORDER INITIALLY

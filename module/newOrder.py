@@ -3,7 +3,7 @@ import json
 from binance.lib.utils import config_logging
 from binance.error import ClientError
 from binanceAPI.user import um_futures_client
-from utils.teleBot import send_error
+from binanceAPI.teleBot import send_error
 
 #config_logging(logging, logging.DEBUG)
 

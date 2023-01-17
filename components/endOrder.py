@@ -1,7 +1,7 @@
 import variables.globalVar as globalVar
 from module.takeProfit import takeProfit
 from utils.printColor import *
-from utils.teleBot import *
+from binanceAPI.teleBot import *
 from module.cancelOrder import cancelOrder
 
 # BREAK EVEN LONG LAST FILLED
