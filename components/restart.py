@@ -18,11 +18,8 @@ def restart_stream():
   duration = getDuration()
   record(pnl, duration)
   send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%")
-  send_error("----------RESTART----------")
-  send_error(".")
-  send_error(".")
-  send_error(".")
-  print("PNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) + "%" + "\n-----RESTART-----\n")
+  send_error("\n----------RESTART----------")
+  prYellow("\nPNL: " + str(pnl) + "Gain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) + "%" + "\n-----RESTART-----\n")
 
   # LOCAL RESTART 
   # os.system('python "main.py"')
