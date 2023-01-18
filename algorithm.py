@@ -5,6 +5,7 @@ from components.printOrder import printOrder
 from components.restart import restart_stream
 from module.cancelOrder import cancelOrder
 from module.positionIsEmpty import positionIsEmpty
+from module.positionCount import *
 from utils.printColor import *
 from binanceAPI.teleBot import *
 
@@ -56,9 +57,15 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
   # X REACH XMAX
   else:
     print("\nReaching maximum order at order no." + str(globalVar.x))
-    if filledPositionSide == "LONG":
-      endLong()
-    else:
-      endShort()
+    if positionCount == 2:
+      if filledPositionSide == "LONG":
+        endLong()
+      else:
+        endShort()
+    if positionCount == 1:
+      if filledPositionSide == "LONG":
+        endFinalLong()
+      else:
+        endFinalShort()
     prGreen("DONE...Breakeven stoploss strategy has been triggered.")
     send_error("Reaching maximum order at order no." + str(globalVar.x)+ "\nBreakeven stoploss strategy has been triggered.")
