@@ -52,6 +52,7 @@ def on_error(ws, error):
     print(f"Error: {error}")
 
 def on_close(ws, close_status_code, close_msg):
+    send_error("\n*******END*******")
     print(f"Close: {close_status_code} {close_msg}")
 
 def run_stream():

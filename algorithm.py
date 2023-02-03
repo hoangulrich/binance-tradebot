@@ -32,20 +32,13 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
     
     # SEND INFO TELEGRAM
     # -- TO DO --
-    send_error("\n******Order no. " + str(globalVar.x) + "******" + 
+    send_error("Order no. " + str(globalVar.x) + 
     "\n - Order is " + str(filledStatus) + " " + str(filledPositionSide) +
     "\n - Order margin is " + str(round(globalVar.margin,2)) + " USDT" +
     "\n - Total NAV is " + str(round(globalVar.cumulativeMargin,2)) + " USDT" +
     "\n - Current Ceiling Price is: " + str(round(globalVar.initialCeiling,4)) + 
     "\n - Current Floor Price is: " + str(round(globalVar.initialFloor,4)))
     print("Phase " + str(globalVar.x))
-<<<<<<< Updated upstream
-    send_error("Phase " + str(globalVar.x))
-=======
-
-    # CLEAR ORDERS
-    cancelOrder(globalVar.symbol)
->>>>>>> Stashed changes
     
     # EVENT LOOP
     if globalVar.x < globalVar.Xmax:
@@ -69,7 +62,7 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
           endShort()
       if globalVar.x == globalVar.Xmax + 2:
         if filledPositionSide == "LONG":
-          endFinalShort()
-        else:
           endFinalLong()
+        else:
+          endFinalShort()
     

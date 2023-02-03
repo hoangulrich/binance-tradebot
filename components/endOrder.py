@@ -54,7 +54,7 @@ def endFinalShort():
     cancelOrder(globalVar.symbol)
 
     offsetFee = round(globalVar.initialCeiling,2)*0.2/100
-    TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision))
+    TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
 
-    takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
+    takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     send_error("Breakeven triggered.")

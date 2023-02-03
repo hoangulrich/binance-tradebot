@@ -22,6 +22,7 @@ def restart_stream():
   prGreen("RESTART")
 
   # RESTART
+  send_error("\n*******START*******")
   ask_input()
   initialOrder()
   
