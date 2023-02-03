@@ -1,10 +1,8 @@
 #! /usr/bin/python3
-
 from input import *
 from hosting.wsocket import *
 
 def main():
-    #keep_alive()
     if globalVar.x == 0:
         ask_input()
     run_stream()

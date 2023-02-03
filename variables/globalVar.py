@@ -2,11 +2,13 @@
 symbol = None 
 initialFloor = None
 initialCeiling = None
-quantity = None
 
 # VARIABLES
 global x
 x = 0
+
+global quantity
+quantity = 0
 
 global cumulativeMargin
 cumulativeMargin = 0

@@ -1,10 +1,10 @@
 import logging
-import json
 from binance.lib.utils import config_logging
 from binance.error import ClientError
 from binanceAPI.user import um_futures_client
 from variables import globalVar
 from binanceAPI.teleBot import send_error
+from components.fixOrder import *
 
 #config_logging(logging, logging.DEBUG)
 
@@ -22,14 +22,11 @@ def newOrder(symbol,positionSide,side,type,quantity,stopPrice):
         )
         #logging.info(response)
     except ClientError as error:
-        send_error("Found error. status: {}, error code: {}, error message: {}".format(
-                error.status_code, error.error_code, error.error_message
-            ))
-        logging.error(
-            "Found error. status: {}, error code: {}, error message: {}".format(
-                error.status_code, error.error_code, error.error_message
-            )
-        )
+        send_error("NewOrder error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
+        logging.error("NewOrder error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
+        if error.error_code == -2021:
+            fixError("trigger")
+        
 
 
 

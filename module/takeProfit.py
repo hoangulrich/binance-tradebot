@@ -4,6 +4,9 @@ from binance.error import ClientError
 import logging
 from variables import globalVar
 from binanceAPI.teleBot import send_error
+from components.fixOrder import *
+
+#config_logging(logging, logging.DEBUG)
 
 # TAKE PROFIT
 def takeProfit(symbol,positionSide,side,type,stopPrice): 
@@ -19,11 +22,5 @@ def takeProfit(symbol,positionSide,side,type,stopPrice):
         )
         #logging.info(response)
     except ClientError as error:
-        send_error("Found error. status: {}, error code: {}, error message: {}".format(
-                error.status_code, error.error_code, error.error_message
-            ))
-        logging.error(
-            "Found error. status: {}, error code: {}, error message: {}".format(
-                error.status_code, error.error_code, error.error_message
-            )
-        )
+        send_error("TakeProfit error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
+        logging.error("TakeProfit error. Error code: {}, error message: {}".format(error.error_code, error.error_message))

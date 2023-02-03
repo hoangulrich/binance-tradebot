@@ -18,4 +18,4 @@
 #   t = Thread(target=run)
 #   t.start()
 
-print("Hello")
+print("404")

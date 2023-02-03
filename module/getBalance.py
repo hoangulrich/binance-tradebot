@@ -4,6 +4,8 @@ from binance.error import ClientError
 import logging
 from binanceAPI.teleBot import send_error
 
+#config_logging(logging, logging.DEBUG)
+
 # GET FUTURE BALANCE USDT
 def getBalance():
     try:

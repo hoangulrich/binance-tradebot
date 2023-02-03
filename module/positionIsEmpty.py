@@ -5,6 +5,8 @@ import variables.globalVar as globalVar
 import logging
 from binanceAPI.teleBot import send_error
 
+#config_logging(logging, logging.DEBUG)
+
 # CHECK IF POSITION IS EMPTY
 def positionIsEmpty():
     try:
