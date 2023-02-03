@@ -7,6 +7,7 @@ from module.newMarketOrder import *
 from components.startLoop import initialOrder
 from variables import globalVar
 from components.fixOrder import *
+from module.getOrderCount import *
 
 def on_open(ws):
     exchange_info =  um_futures_client.exchange_info()
@@ -34,9 +35,14 @@ def on_message(ws, message):
             algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus)
             
         elif(event_dict["o"]["X"] == "EXPIRED"):
-            print("fixEXPIRED")
-            # -- TO DO --
-            # fixOrder("expiredOrder")
+            # FIX EXPIRED ORDER
+            if getOrderCount(globalVar.symbol) == 2:
+                print("fixEXPIRED at open order = " + str(getOrderCount(globalVar.symbol)))
+                positionSide = event_dict["o"]["ps"]
+                fixExpired(positionSide)
+            else:
+                print("no need fix with open order = " + str(getOrderCount(globalVar.symbol)))
+            
         elif(event_dict["o"]["X"] == "PARTIALLY_FILLED"):
             print("fixPARTIAL")
         # else:

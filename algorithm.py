@@ -34,9 +34,6 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
     # -- TO DO --
     print("Phase " + str(globalVar.x))
     send_error("Phase " + str(globalVar.x))
-
-    # CLEAR ORDERS
-    cancelOrder(globalVar.symbol)
     
     # EVENT LOOP
     if globalVar.x < globalVar.Xmax:
