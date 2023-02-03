@@ -16,7 +16,7 @@ def endLong():
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)
     # prGreen("DONE...Set up TP and SL Price")
 
-    SL_LONG = round(globalVar.initialCeiling-(globalVar.initialCeiling-globalVar.initialFloor)*50/100,globalVar.decimalPrecision)
+    SL_LONG = round(globalVar.initialCeiling-(globalVar.initialCeiling-globalVar.initialFloor)*30/100,globalVar.decimalPrecision)
     offsetFee = round(globalVar.initialFloor,2)*0/100 
     TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision))
 
@@ -35,7 +35,7 @@ def endShort():
 
     offsetFee = round(globalVar.initialCeiling,2)*0/100
     TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
-    SL_SHORT = round(globalVar.initialFloor+(globalVar.initialCeiling-globalVar.initialFloor)*50/100,globalVar.decimalPrecision)
+    SL_SHORT = round(globalVar.initialFloor+(globalVar.initialCeiling-globalVar.initialFloor)*30/100,globalVar.decimalPrecision)
 
     # takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)

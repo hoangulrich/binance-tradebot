@@ -17,7 +17,8 @@ def restart_stream():
   record(pnl, duration)
 
   # SEND INFO TELEGRAM
-  send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%")
+  send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%"
+  + "\n*******RESTART*******")
   prGreen("RESTART")
 
   # RESTART
