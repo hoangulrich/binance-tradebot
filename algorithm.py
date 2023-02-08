@@ -25,6 +25,9 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
       # SHORT 1ST
       globalVar.initialFloor = round(float(filledPrice),globalVar.decimalPrecision)
       globalVar.initialCeiling = round(globalVar.initialFloor + globalVar.gap * globalVar.initialFloor,globalVar.decimalPrecision)
+      send_error("\n*******START*******"+
+                "\n - Current Ceiling Price is: " + str(round(globalVar.initialCeiling,4)) + 
+                "\n - Current Floor Price is: " + str(round(globalVar.initialFloor,4)))
 
     # CALCULATE MARGIN/NAV
     globalVar.margin = round(float(filledQuantity) / globalVar.leverage * float(globalVar.initialCeiling), globalVar.decimalPrecision)
@@ -35,10 +38,8 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
     send_error("Order no. " + str(globalVar.x) + 
     "\n - Order is " + str(filledStatus) + " " + str(filledPositionSide) +
     "\n - Order margin is " + str(round(globalVar.margin,2)) + " USDT" +
-    "\n - Total NAV is " + str(round(globalVar.cumulativeMargin,2)) + " USDT" +
-    "\n - Current Ceiling Price is: " + str(round(globalVar.initialCeiling,4)) + 
-    "\n - Current Floor Price is: " + str(round(globalVar.initialFloor,4)))
-    print("Phase " + str(globalVar.x))
+    "\n - Total NAV is " + str(round(globalVar.cumulativeMargin,2)) + " USDT")
+    print("\nPHASE " + str(globalVar.x))
     
     # EVENT LOOP
     if globalVar.x < globalVar.Xmax:
@@ -47,9 +48,9 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
       # globalVar.quantity = globalVar.quantity * pow(2, globalVar.x)
       globalVar.quantity = globalVar.quantity * 2
 
-      if filledPositionSide == "LONG":
+      if filledPositionSide == "LONG" and globalVar.expiredOrder == False:
         loopLong(globalVar.quantity)
-      else:
+      elif filledPositionSide == "SHORT" and globalVar.expiredOrder == False:
         loopShort(globalVar.quantity)
 
     # LAST ORDER/BREAK EVEN

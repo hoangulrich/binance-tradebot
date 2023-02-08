@@ -7,6 +7,7 @@ from module.cancelOrder import cancelOrder
 # BREAK EVEN LONG LAST FILLED
 def endLong():
     cancelOrder(globalVar.symbol)
+    prCyan("CANCEL ALL ORDERS(endLong)")
 
     TP_LONG = round(globalVar.initialCeiling*(1+globalVar.profit/globalVar.leverage),globalVar.decimalPrecision)
     SL_SHORT = TP_LONG
@@ -14,7 +15,6 @@ def endLong():
     # takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "STOP_MARKET", SL_SHORT)
-    # prGreen("DONE...Set up TP and SL Price")
 
     SL_LONG = round(globalVar.initialCeiling-(globalVar.initialCeiling-globalVar.initialFloor)*30/100,globalVar.decimalPrecision)
     offsetFee = round(globalVar.initialFloor,2)*0/100 
@@ -25,13 +25,13 @@ def endLong():
 # BREAK EVEN SHORT LAST FILLED    
 def endShort():
     cancelOrder(globalVar.symbol)
+    prCyan("CANCEL ALL ORDERS(endShort)")
 
     SL_LONG = round(globalVar.initialFloor*(1-globalVar.profit/globalVar.leverage),globalVar.decimalPrecision)
     TP_SHORT = SL_LONG
 
     takeProfit(globalVar.symbol, "LONG", "SELL", "STOP_MARKET", SL_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
-    # prGreen("DONE...Set up TP and SL Price")
 
     offsetFee = round(globalVar.initialCeiling,2)*0/100
     TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
@@ -43,6 +43,7 @@ def endShort():
 
 def endFinalLong():
     cancelOrder(globalVar.symbol)
+    prCyan("CANCEL ALL ORDERS(endFinalLong)")
 
     offsetFee = round(globalVar.initialFloor,2)*0.2/100
     TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision))
@@ -52,6 +53,7 @@ def endFinalLong():
     
 def endFinalShort():
     cancelOrder(globalVar.symbol)
+    prCyan("CANCEL ALL ORDERS(endFinalShort)")
 
     offsetFee = round(globalVar.initialCeiling,2)*0.2/100
     TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))

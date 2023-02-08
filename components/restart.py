@@ -10,6 +10,7 @@ from input import *
 def restart_stream():
   # CLEAR LEFTOVER ORDERS
   cancelOrder(globalVar.symbol)
+  prCyan("CANCEL ALL ORDERS(restart)")
 
   # CALCULATE PNL AND DURATION
   pnl = round(getBalance() - globalVar.initialBalance, 4)
@@ -19,10 +20,9 @@ def restart_stream():
   # SEND INFO TELEGRAM
   send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%"
   + "\n*******RESTART*******")
-  prGreen("RESTART")
+  prCyan("RESTART")
 
   # RESTART
-  send_error("\n*******START*******")
   ask_input()
   initialOrder()
   

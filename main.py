@@ -3,7 +3,6 @@ from input import *
 from hosting.wsocket import *
 
 def main():
-    send_error("\n*******START*******")
     if globalVar.x == 0:
         ask_input()
     run_stream()

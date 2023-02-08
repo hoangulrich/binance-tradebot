@@ -23,7 +23,7 @@ def newOrder(symbol,positionSide,side,type,quantity,stopPrice):
         #logging.info(response)
     except ClientError as error:
         send_error("NewOrder error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
-        logging.error("NewOrder error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
+        #logging.error("NewOrder error. Error code: {}, error message: {}".format(error.error_code, error.error_message))
         if error.error_code == -2021:
             fixOrder("trigger")
         

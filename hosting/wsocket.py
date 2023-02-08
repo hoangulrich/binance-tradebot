@@ -18,35 +18,45 @@ def on_open(ws):
     initialOrder()
     
 def on_message(ws, message):
-    prYellow(f"\nMessage: {message}\n")
+    #prYellow(f"\nMessage: {message}\n")
     event_dict = json.loads(message)
     #prYellow(json.dumps(event_dict, indent = 4))
     
     if event_dict["e"] == "ORDER_TRADE_UPDATE":
+
+        # ASSIGN VARIABLE FOR ORDER
+        price = event_dict["o"]["L"]
+        quantity = event_dict["o"]["l"]
+        positionSide = event_dict["o"]["ps"] #LONG/SHORT
+        status = event_dict["o"]["X"] #NEW/EXPIRED/FILLED/CANCELED
+        type = event_dict["o"]["o"] #STOP_MARKET/TAKE_PROFIT_MARKET
+        id = event_dict["o"]["i"]
+        side = event_dict["o"]["S"] #SELL/BUY
+
         if(event_dict["o"]["X"] == "FILLED"):
-    
-            # ASSIGN VARIABLE FOR FILLED ORDER
-            filledPrice = event_dict["o"]["L"]
-            filledQuantity = event_dict["o"]["l"]
-            filledPositionSide = event_dict["o"]["ps"]
-            filledStatus = event_dict["o"]["X"]
+            # LOG
+            prGreen(f"POSITION:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
             
             # START ALGORITHM
-            algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus)
+            algorithm(price, quantity, positionSide, status)
             
         elif(event_dict["o"]["X"] == "EXPIRED"):
+            # LOG
+            prRed(f"ORDER:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
+
             # FIX EXPIRED ORDER
             if getOrderCount(globalVar.symbol) == 2:
-                print("fixEXPIRED at open order = " + str(getOrderCount(globalVar.symbol)))
-                positionSide = event_dict["o"]["ps"]
                 fixExpired(positionSide)
             else:
                 print("no need fix with open order = " + str(getOrderCount(globalVar.symbol)))
+        
+        elif(event_dict["o"]["X"] == "NEW"):
+            # LOG
+            prYellow(f"ORDER:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
             
-        elif(event_dict["o"]["X"] == "PARTIALLY_FILLED"):
-            print("fixPARTIAL")
-        # else:
-        #     print("ORDER UPDATE: " + event_dict["o"]["ps"] + " " + event_dict["o"]["X"])
+        # elif(event_dict["o"]["X"] == "PARTIALLY_FILLED"):
+        #     prRed("Partial Order Detected")
+        
             
 def on_error(ws, error):
     print(f"Error: {error}")

@@ -8,8 +8,6 @@ def getOrderCount(symbol):
     try:
         response = um_futures_client.get_orders(symbol=symbol, recvWindow=2000)
         return len(response)
-        # return response
-        # logging.info(response)
     except ClientError as error:
         logging.error(
             "Found error. status: {}, error code: {}, error message: {}".format(
