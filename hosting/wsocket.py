@@ -45,10 +45,11 @@ def on_message(ws, message):
             prRed(f"ORDER:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
 
             # FIX EXPIRED ORDER
-            if getOrderCount(globalVar.symbol) == 2:
+            # limit = globalVar.Xmax - 1
+            if getOrderCount(globalVar.symbol) == 2 and globalVar.x < globalVar.Xmax:
                 fixExpired(positionSide)
             else:
-                print("no need fix with open order = " + str(getOrderCount(globalVar.symbol)))
+                print("NO NEED FIX AT NUMBER OF ORDERS = " + str(getOrderCount(globalVar.symbol)))
         
         elif(event_dict["o"]["X"] == "NEW"):
             # LOG

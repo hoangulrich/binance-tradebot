@@ -27,7 +27,9 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
       globalVar.initialCeiling = round(globalVar.initialFloor + globalVar.gap * globalVar.initialFloor,globalVar.decimalPrecision)
       send_error("\n*******START*******"+
                 "\n - Current Ceiling Price is: " + str(round(globalVar.initialCeiling,4)) + 
-                "\n - Current Floor Price is: " + str(round(globalVar.initialFloor,4)))
+                "\n - Current Floor Price is: " + str(round(globalVar.initialFloor,4)) +
+                "\n https://www.binance.com/en/futures/"+globalVar.symbol)
+      print(f"\n https://www.binance.com/en/futures/{globalVar.symbol}")
 
     # CALCULATE MARGIN/NAV
     globalVar.margin = round(float(filledQuantity) / globalVar.leverage * float(globalVar.initialCeiling), globalVar.decimalPrecision)
