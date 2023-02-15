@@ -20,7 +20,8 @@ def restart_stream():
   # SEND INFO TELEGRAM
   send_error("PNL: " + "$" + str(pnl) + "\nGain: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%"
   + "\n*******RESTART*******")
-  prCyan("RESTART")
+  print("PNL: " + "$" + str(pnl) + " | GAIN: " + str(round(pnl/globalVar.cumulativeMargin*100,2)) +"%")
+  prCyan("\n*******RESTART*******")
 
   # RESTART
   ask_input()

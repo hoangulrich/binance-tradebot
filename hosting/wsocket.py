@@ -46,7 +46,7 @@ def on_message(ws, message):
 
             # FIX EXPIRED ORDER
             # limit = globalVar.Xmax - 1
-            if getOrderCount(globalVar.symbol) == 2 and globalVar.x < globalVar.Xmax:
+            if getOrderCount(globalVar.symbol) == 2: #and globalVar.x < globalVar.Xmax:
                 fixExpired(positionSide)
             else:
                 print("NO NEED FIX AT NUMBER OF ORDERS = " + str(getOrderCount(globalVar.symbol)))
@@ -55,8 +55,8 @@ def on_message(ws, message):
             # LOG
             prYellow(f"ORDER:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
             
-        # elif(event_dict["o"]["X"] == "PARTIALLY_FILLED"):
-        #     prRed("Partial Order Detected")
+        elif(event_dict["o"]["X"] == "PARTIALLY_FILLED"):
+            prRed(f"ORDER:: ID: {id} | Type: {type} | Status: {status} | Side: {positionSide}-{side}")
         
             
 def on_error(ws, error):
