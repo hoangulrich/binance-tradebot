@@ -48,7 +48,7 @@ def algorithm(filledPrice, filledQuantity, filledPositionSide, filledStatus):
       
       globalVar.x += 1
       # globalVar.quantity = globalVar.quantity * pow(2, globalVar.x)
-      globalVar.quantity = globalVar.quantity * 2
+      globalVar.quantity = globalVar.quantity * globalVar.power
 
       if filledPositionSide == "LONG" and globalVar.expiredOrder == False:
         loopLong(globalVar.quantity)

@@ -45,3 +45,9 @@ start = None
 
 global end 
 end = None
+
+global power
+power = None
+
+global BE
+BE = None

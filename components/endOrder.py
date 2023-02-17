@@ -19,8 +19,8 @@ def endLong():
     # TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision))
     # takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
 
-    TP_LONG = round(globalVar.initialCeiling*100.25/100,globalVar.decimalPrecision)
-    TP_SHORT = round(globalVar.initialFloor*99.75/100,globalVar.decimalPrecision)
+    TP_LONG = round(globalVar.initialCeiling*(1+globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
+    TP_SHORT = round(globalVar.initialFloor*(1-globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
 
@@ -40,8 +40,8 @@ def endShort():
     # takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     # TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
 
-    TP_LONG = round(globalVar.initialCeiling*100.25/100,globalVar.decimalPrecision)
-    TP_SHORT = round(globalVar.initialFloor*99.75/100,globalVar.decimalPrecision)
+    TP_LONG = round(globalVar.initialCeiling*(1+globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
+    TP_SHORT = round(globalVar.initialFloor*(1-globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
 
@@ -53,7 +53,7 @@ def endFinalLong():
     # TP_SHORT = globalVar.initialFloor-(round(offsetFee,globalVar.decimalPrecision)) 
     # takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
 
-    TP_SHORT = round(globalVar.initialFloor*99.75/100,globalVar.decimalPrecision)
+    TP_SHORT = round(globalVar.initialFloor*(1-globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
     takeProfit(globalVar.symbol, "SHORT", "BUY", "TAKE_PROFIT_MARKET", TP_SHORT)
     
 def endFinalShort():
@@ -64,5 +64,5 @@ def endFinalShort():
     # TP_LONG = globalVar.initialCeiling+(round(offsetFee,globalVar.decimalPrecision))
     # takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
     
-    TP_LONG = round(globalVar.initialCeiling*100.25/100,globalVar.decimalPrecision)
+    TP_LONG = round(globalVar.initialCeiling*(1+globalVar.BE/globalVar.leverage),globalVar.decimalPrecision)
     takeProfit(globalVar.symbol, "LONG", "SELL", "TAKE_PROFIT_MARKET", TP_LONG)
