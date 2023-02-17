@@ -5,28 +5,29 @@ from utils.printColor import *
 
  # FIX ORDER IMMEDIATELY TRIGGER ERROR
 def fixOrder(errorType):
-    prRed("Trigger Error Detected")
     if errorType == "trigger" and globalVar.x <= globalVar.Xmax:
         
-        # X Chan
+        # X EVEN
         if globalVar.x % 2 == 0 and globalVar.x != 0:
-            if getPrice(globalVar.symbol) > globalVar.initialCeiling:
+            price = getPrice(globalVar.symbol)
+            if price > globalVar.initialCeiling:
                 
-                prCyan("tao new market order short sell")
+                print(f"Price({price}) > Ceiling({globalVar.initialCeiling}) => CREATE new market order short sell")
                 newMarketOrder(globalVar.symbol, "SHORT", "SELL", "MARKET", globalVar.quantity)
             else:
                 from components.loopOrder import loopShort
-                prCyan("FIX => loop short")
+                print(f"Price({price}) < Ceiling({globalVar.initialCeiling}) => loop short")
                 loopShort(globalVar.quantity)
                 
-        # X Le
+        # X ODD
         elif globalVar.x % 2 != 0 and globalVar.x != 0:
-            if getPrice(globalVar.symbol) < globalVar.initialFloor:
-                print("tao new market order long buy")
+            price = getPrice(globalVar.symbol)
+            if price < globalVar.initialFloor:
+                print(f"Price({price}) < Floor({globalVar.initialFloor}) => CRAETE new market order long buy")
                 newMarketOrder(globalVar.symbol, "LONG", "BUY", "MARKET", globalVar.quantity)
             else:
                 from components.loopOrder import loopLong
-                print("FIX => loop long")
+                print(f"Price({price}) > Floor({globalVar.initialFloor}) => loop long")
                 loopLong(globalVar.quantity)
           
 def fixExpired(positionSide):
